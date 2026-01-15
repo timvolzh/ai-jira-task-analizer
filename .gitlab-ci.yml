@@ -1,0 +1,15 @@
+image: python:3.11
+
+stages:
+  - run
+
+scheduled_jira_job:
+  stage: run
+  script:
+    - pip install -r requirements.txt
+    - python -m app.main --write-summary
+  artifacts:
+    when: always
+    paths:
+      - output/
+      - summary.md
